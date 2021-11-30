@@ -32,3 +32,8 @@ $(".gallery").slick({
   slidesToScroll: 3,
   dots: true,
 });
+
+$(".gallery .image img").click(function () {
+  var src = $(this).attr("src");
+  $(".main-image").attr("src", src);
+});
