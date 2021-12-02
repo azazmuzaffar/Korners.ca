@@ -352,6 +352,7 @@ body {
 .shop-item .container .row ._left .shop-products ._productImages img {
   width: 100%;
   height: auto;
+  cursor: pointer;
 }
 
 .shop-item .container .row ._left .shop-products ._productImages .gallery {
@@ -1008,6 +1009,237 @@ body {
   }
   .shop-item .container .row ._left .pagination a:nth-of-type(5), .shop-item .container .row ._left .pagination a:nth-of-type(6), .shop-item .container .row ._left .pagination a:nth-of-type(7) {
     display: none;
+  }
+}
+
+.product-gallery {
+  display: none;
+  position: fixed;
+  padding: 70px;
+  overflow: scroll;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.521);
+}
+
+.product-gallery.show {
+  display: block;
+}
+
+.product-gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.product-gallery .container-fluid {
+  position: relative;
+  border-radius: 10px;
+  height: 100%;
+  background: white;
+  padding: 30px 50px 30px 50px;
+  -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.295);
+          box-shadow: 0 0 30px rgba(0, 0, 0, 0.295);
+}
+
+.product-gallery .container-fluid .close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+
+.product-gallery .container-fluid .close svg {
+  width: 25px;
+  cursor: pointer;
+}
+
+.product-gallery .container-fluid .select-close {
+  width: 100%;
+}
+
+.product-gallery .container-fluid .select-close::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: #f0f0f0;
+  -webkit-box-shadow: 0 0 15px rgba(92, 92, 92, 0.158);
+          box-shadow: 0 0 15px rgba(92, 92, 92, 0.158);
+}
+
+.product-gallery .container-fluid .select-close ul {
+  list-style: none;
+  width: 100%;
+  padding: 0px 30px;
+  margin: 0;
+}
+
+.product-gallery .container-fluid .select-close ul li {
+  display: inline-block;
+  margin-right: 40px;
+  margin-bottom: -4px;
+}
+
+.product-gallery .container-fluid .select-close ul li a {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 15px;
+  padding-bottom: 7px;
+  color: black;
+}
+
+.product-gallery .container-fluid .select-close ul li a.active {
+  border-bottom: 4px solid #ff7700;
+}
+
+.product-gallery .container-fluid .product-area {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 95%;
+}
+
+.product-gallery .container-fluid .product-area ._left- {
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.product-gallery .container-fluid .product-area ._left- .active-product {
+  position: relative;
+}
+
+.product-gallery .container-fluid .product-area ._left- .active-product img {
+  position: relative;
+  max-height: 100%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.product-gallery .container-fluid .product-area ._right- {
+  width: 540px;
+  padding: 30px;
+  border-left: 1px solid #e2e2e2;
+}
+
+.product-gallery .container-fluid .product-area ._right- .product-images h3 {
+  text-transform: capitalize;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.product-gallery .container-fluid .product-area ._right- .product-images p {
+  font-size: 14px;
+}
+
+.product-gallery .container-fluid .product-area ._right- .product-images ul {
+  list-style: none;
+  margin: 20px 0px;
+  padding: 0;
+}
+
+.product-gallery .container-fluid .product-area ._right- .product-images ul li {
+  display: inline-block;
+  padding: 0;
+  margin: 3px 5px;
+}
+
+.product-gallery .container-fluid .product-area ._right- .product-images ul li ._image-wrapper- {
+  position: relative;
+  width: 65px;
+  height: 65px;
+  border: 2px solid lightgray;
+  -webkit-box-shadow: 0 0 30px rgba(146, 146, 146, 0.178);
+          box-shadow: 0 0 30px rgba(146, 146, 146, 0.178);
+  cursor: pointer;
+}
+
+.product-gallery .container-fluid .product-area ._right- .product-images ul li ._image-wrapper-:hover {
+  border: 2px solid #ff7700;
+}
+
+.product-gallery .container-fluid .product-area ._right- .product-images ul li ._image-wrapper- img {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  width: 80%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.product-gallery .container-fluid .product-area ._right- .product-images ul li ._image-wrapper-.active {
+  border: 2px solid #ff7700;
+}
+
+@media (max-width: 768px) {
+  .product-gallery {
+    padding: 20px;
+    overflow: scroll;
+    height: 100%;
+  }
+  .product-gallery .container-fluid {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    border-radius: 3px;
+    padding: 30px 30px 10px 30px;
+  }
+  .product-gallery .container-fluid .select-close ul {
+    padding: 0px 10px;
+  }
+  .product-gallery .container-fluid .select-close ul li {
+    margin-right: 30px;
+  }
+  .product-gallery .container-fluid .select-close ul li a {
+    font-size: 14px;
+  }
+  .product-gallery .container-fluid .product-area {
+    display: block;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .product-gallery .container-fluid .product-area ._left- {
+    background: red;
+    margin: 10px 0px;
+    padding: 0;
+  }
+  .product-gallery .container-fluid .product-area ._left- .active-product img {
+    position: relative;
+    max-height: 100%;
+    top: unset;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  .product-gallery .container-fluid .product-area ._right- {
+    width: 100%;
+    padding: 0px;
+    margin-top: 30px;
+    border-left: none;
+  }
+  .product-gallery .container-fluid .product-area ._right- .product-images h3 {
+    font-size: 16px;
+  }
+  .product-gallery .container-fluid .product-area ._right- .product-images p {
+    font-size: 14px;
+  }
+  .product-gallery .container-fluid .product-area ._right- .product-images ul li {
+    margin: 2px 2px;
+  }
+}
+
+@media (max-width: 400px) {
+  .product-gallery .container-fluid {
+    padding: 20px 20px 10px 20px;
   }
 }
 /*# sourceMappingURL=app.css.map */

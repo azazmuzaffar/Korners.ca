@@ -2,6 +2,10 @@
 /* >>>>>>>>>>>>>>>>>>>> Korners <<<<<<<<<<<<<<<<<<< */
 /* >>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<< */
 
+/* 
+ All the Dropdown and item selection made here
+*/
+
 $(".dropdown").click(function () {
   $(this).attr("tabindex", 1).focus();
   $(this).toggleClass("active");
@@ -16,6 +20,10 @@ $(".dropdown .dropdown-menu li").click(function () {
   $(this).parents(".dropdown").find("input").attr("value", $(this).attr("id"));
 });
 
+/* 
+ Zoom Option 1
+*/
+
 var demoTrigger = document.querySelector(".main-image");
 var paneContainer = document.querySelector("._productDetails");
 
@@ -23,7 +31,9 @@ new Drift(demoTrigger, {
   paneContainer: paneContainer,
   inlinePane: false,
 });
-
+/* 
+ Slick Slider
+*/
 $(".gallery").slick({
   infinite: true,
   slidesToShow: 3,
@@ -32,8 +42,58 @@ $(".gallery").slick({
   slidesToScroll: 3,
   dots: true,
 });
-
+/* 
+ Make selected image active 
+*/
 $(".gallery .image img").click(function () {
   var src = $(this).attr("src");
   $(".main-image").attr("src", src);
+});
+/* Zoom option two */
+/* 
+ Pass Image src to the Zoom option to make it active
+*/
+var liList = document.getElementById("count").getElementsByTagName("li");
+var count = liList.length;
+
+var touchtime = 0;
+$(".main-image").on("click", function () {
+  if (touchtime == 0) {
+    // set first click
+    touchtime = new Date().getTime();
+  } else {
+    // compare first click to this click and see if they occurred within double click threshold
+    if (new Date().getTime() - touchtime < 800) {
+      $(".product-images ul .active").removeClass("active");
+      var src = $(this).attr("src");
+      var listItems = $("#count li");
+      for (let li of listItems) {
+        let imgsrc = $(li).children().children().attr("src");
+        if (imgsrc === src) {
+          $(li).children().addClass("active");
+        }
+      }
+      $("#active-image").attr("src", src);
+      $(".product-gallery").addClass("show");
+    } else {
+      // not a double click so set as a new first click
+      touchtime = new Date().getTime();
+    }
+  }
+});
+
+/* 
+ Add active classes to the newly selected images
+*/
+$(".product-images ul li img").click(function () {
+  var src = $(this).attr("src");
+  $("#active-image").attr("src", src);
+  $(".product-images ul .active").removeClass("active");
+  $(this).parent().addClass("active");
+});
+/* 
+ Close the Zoom Option
+*/
+$(".close").click(function () {
+  $(".product-gallery").removeClass("show");
 });
