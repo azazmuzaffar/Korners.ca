@@ -5,7 +5,6 @@
 /* 
  All the Dropdown and item selection made here
 */
-
 $(".dropdown").click(function () {
   $(this).attr("tabindex", 1).focus();
   $(this).toggleClass("active");
@@ -21,17 +20,6 @@ $(".dropdown .dropdown-menu li").click(function () {
 });
 
 /* 
- Zoom Option 1
-*/
-
-var demoTrigger = document.querySelector(".main-image");
-var paneContainer = document.querySelector("._productDetails");
-
-new Drift(demoTrigger, {
-  paneContainer: paneContainer,
-  inlinePane: false,
-});
-/* 
  Slick Slider
 */
 $(".gallery").slick({
@@ -42,13 +30,16 @@ $(".gallery").slick({
   slidesToScroll: 3,
   dots: true,
 });
+
 /* 
  Make selected image active 
 */
 $(".gallery .image img").click(function () {
   var src = $(this).attr("src");
   $(".main-image").attr("src", src);
+  $(".main-image").attr("data-zoom", src);
 });
+
 /* Zoom option two */
 /* 
  Pass Image src to the Zoom option to make it active
@@ -91,9 +82,26 @@ $(".product-images ul li img").click(function () {
   $(".product-images ul .active").removeClass("active");
   $(this).parent().addClass("active");
 });
+
 /* 
  Close the Zoom Option
 */
 $(".close").click(function () {
   $(".product-gallery").removeClass("show");
+});
+
+/* 
+ Zoom Option 1
+*/
+/* Trigger Zoom option 1 on Desktop and disable on mobile */
+var demoTrigger;
+if (window.innerWidth > 768) {
+  demoTrigger = document.querySelector(".main-image");
+} else {
+  demoTrigger = document.querySelector("");
+}
+var paneContainer = document.querySelector("._productDetails");
+new Drift(demoTrigger, {
+  paneContainer: paneContainer,
+  inlinePane: false,
 });
